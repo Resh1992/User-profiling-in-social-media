@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+  then
+    exit 1
+fi
+
+extrovert="3.48685789474"
+neurotic="2.73242421053"
+agreeable="3.58390421053"
+conscientious="3.44561684211"
+open="3.90869052632"
+
+while [[ $# -gt 0 ]]
+do
+currArgument="$1"
+
+case $currArgument in 
+    -i)
+    INPUTPATH="$2"
+    shift 
+    shift # shift the argument and the values
+    ;;
+    -o)
+    OUTPUTPATH="$2"
+    shift 
+    shift # shift the argument and the values
+    ;;
+esac
+done
+
+python3 prediction\ model/make_predictions.py $INPUTPATH $OUTPUTPATH $extrovert $neurotic $agreeable $conscientious $open
